@@ -1,0 +1,20 @@
+:root {
+    --primary-color: #28a745;
+    --primary-hover-color: #218838;
+    --secondary-color: #6c757d;
+    --background-color: #f8f9fa;
+    --text-color: #343a40;
+
+    --border-radius-small: 0.25rem;
+    --border-radius-medium: 0.5rem;
+    --border-radius-large: 0.75rem;
+
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --transition-medium: 0.3s ease;
+    
+
+    --muted-text-color: #00000080;
+    
+    --card-background-color: #ffffff;
+    --card-border-color: #f8f9fa;
+}

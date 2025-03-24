@@ -1,0 +1,416 @@
+@import url('theme_variables.css');
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: var(--font-family);
+}
+
+.container {
+    margin-top: 20px;
+}
+
+/* Book Details Section */
+.book-detail {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    padding: 20px;
+    background-color: var(--card-background-color);
+    border: 1px solid var(--card-border-color);
+    border-radius: var(--border-radius-medium);
+    box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+.book-image {
+    flex: 1;
+    min-width: 250px;
+    max-width: 400px;
+}
+
+.book-image img {
+    width: 100%;
+    border-radius: var(--border-radius-medium);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.book-info {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 1rem;
+    color: var(--text-color);
+    margin-bottom: 8px;
+}
+
+.book-info strong {
+    color: var(--primary-color);
+    font-weight: var(--font-weight-bold);
+}
+
+.book-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: var(--text-color);
+}
+
+.book-author {
+    font-size: 1.4rem;
+    font-weight: var(--font-weight-bold);
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.book-genre {
+    font-size: 1.1rem;
+    color: var(--muted-text-color);
+    margin-bottom: 10px;
+}
+
+.book-page-count {
+    color: var(--muted-text-color);
+    margin-bottom: 7px;
+}
+
+.book-language {
+    color: var(--muted-text-color);
+    margin-bottom: 7px;
+}
+
+.book-format {
+    color: var(--muted-text-color);
+    margin-bottom: 10px;
+}
+
+.book-rating {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    margin-bottom: 15px;
+}
+
+.book-price {
+    font-size: 1.75rem;
+    font-weight: bold;
+    margin-bottom: 0.75rem;
+}
+
+.add-to-cart {
+    background-color: var(--primary-color);
+    border: none;
+    padding: 12px 24px;
+    border-radius: var(--border-radius-small);
+    color: white;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color var(--transition-medium);
+    width: 100%;
+    max-width: 200px;
+}
+
+.add-to-cart:hover {
+    background-color: var(--primary-hover-color);
+}
+
+/* Description Section */
+.description {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: var(--card-background-color);
+    border: 1px solid var(--card-border-color);
+    border-radius: var(--border-radius-medium);
+    box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+.description h4 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+.description p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+/* Reviews Section */
+.reviews {
+    margin-top: 40px;
+}
+
+.reviews h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.review {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: var(--card-background-color);
+    border: 1px solid var(--card-border-color);
+    border-radius: var(--border-radius-medium);
+    box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+.review strong {
+    color: var(--primary-color);
+}
+
+/* Related Books Section */
+.related-books {
+    margin-top: 40px;
+}
+
+.related-books h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.related-books .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.related-books .book-item {
+    flex: 1 1 200px;
+    margin-bottom: 20px;
+}
+
+.related-books .card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--card-background-color);
+    border: 1px solid var(--card-border-color);
+    border-radius: var(--border-radius-medium);
+    box-shadow: 0 2px 8px var(--shadow-color);
+    transition: transform var(--transition-medium), box-shadow var(--transition-medium);
+}
+
+.related-books .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+.related-books .image-wrapper {
+    position: relative;
+    padding-bottom: 150%;
+    overflow: hidden;
+}
+
+.related-books .image-wrapper img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.related-books .card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 0.2rem;
+    padding: 15px;
+}
+
+.related-books .card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.related-books .card-text {
+    font-size: 1rem;
+    color: var(--muted-text-color);
+    margin-bottom: 0.5rem;
+}
+
+.related-books .price {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.related-books .btn-add-to-cart {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius-small);
+    padding: 10px;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color var(--transition-medium);
+}
+
+.related-books .btn-add-to-cart:hover {
+    background-color: var(--primary-hover-color);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .book-detail {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .book-image {
+        max-width: 100%;
+        
+    }
+
+    .related-books .row {
+        justify-content: center;
+    }
+}
+
+.card-link {
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Ensure text color is inherited from the parent */
+}
+
+.card-link:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+.card-body strong {
+    color: var(--primary-color);
+}
+
+.rating {
+    font-size: 1em;
+}
+
+.rating .filled {
+    color: #ffcc00;
+}
+
+.rating .unfilled {
+    color: #d3d3d3;
+}
+
+
+
+
+
+/* Container for Cart Page */
+.container {
+    margin-top: 30px;
+}
+
+/* Cart Item Card Styling */
+.cart-item .card {
+    background-color: var(--card-background-color);
+    border: 1px solid var(--card-border-color);
+    border-radius: var(--border-radius-medium);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.cart-item .card-body {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.cart-item .image-wrapper {
+    position: relative;
+    padding-bottom: 150%;
+    overflow: hidden;
+}
+
+.cart-item .image-wrapper img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Title and Pricing */
+.cart-item .card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 0.75rem;
+}
+
+.cart-item .price {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+/* Rating Stars */
+.cart-item .rating {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.cart-item .filled {
+    color: #ffcc00;
+}
+
+.cart-item .unfilled {
+    color: #d3d3d3;
+}
+
+/* Button and Remove Section */
+.cart-item .d-flex {
+    justify-content: space-between;
+}
+
+.cart-item input[type="number"] {
+    width: 60px;
+    text-align: center;
+}
+
+/* Total Price Section */
+.d-flex {
+    justify-content: space-between;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover-color);
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.btn-warning {
+    background-color: #f0ad4e;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+    .cart-item .card {
+        width: 100%;
+    }
+
+    .cart-item input[type="number"] {
+        width: 50px;
+    }
+
+    .btn-warning {
+        font-size: 0.9rem;
+        padding: 5px;
+    }
+}
