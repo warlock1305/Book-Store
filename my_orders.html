@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders - Read Any Book</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/my_orders.css" rel="stylesheet">
+    <style>
+        /* Add the updated styles for My Orders page here */
+        @import url(/css/theme_variables.css);
+
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            margin-top: 20px;
+        }
+
+        /* Order Card Styling */
+        .order-card {
+            margin-bottom: 30px;
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .order-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            border-color: #28a745;
+        }
+
+        .order-card-header {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #28a745;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .order-card-body {
+            padding: 15px;
+        }
+
+        .order-card-body p {
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        .order-card-body strong {
+            color: #333;
+        }
+
+        .order-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .order-footer span {
+            color: #6c757d;
+        }
+
+        .order-footer a {
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        .order-footer a:hover {
+            background-color: #218838;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .order-card-header {
+                font-size: 1.25rem;
+            }
+
+            .order-footer {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .order-footer a {
+                width: 100%;
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2 class="mb-4">My Orders</h2>
+
+        <!-- Order 1 -->
+        <div class="order-card">
+            <div class="order-card-header">Order #12345</div>
+            <div class="order-card-body">
+                <p><strong>Book:</strong> Just for the Summer</p>
+                <p><strong>Author:</strong> Abby Jimenez</p>
+                <p><strong>Price:</strong> $15.99</p>
+                <p><strong>Status:</strong> Delivered</p>
+            </div>
+            <div class="order-footer">
+                <span>Order Date: March 1, 2025</span>
+                <a href="#" class="btn btn-primary btn-sm">View Details</a>
+            </div>
+        </div>
+
+        <!-- Order 2 -->
+        <div class="order-card">
+            <div class="order-card-header">Order #12346</div>
+            <div class="order-card-body">
+                <p><strong>Book:</strong> Bride</p>
+                <p><strong>Author:</strong> Ali Hazelwood</p>
+                <p><strong>Price:</strong> $14.99</p>
+                <p><strong>Status:</strong> Shipped</p>
+            </div>
+            <div class="order-footer">
+                <span>Order Date: March 5, 2025</span>
+                <a href="#" class="btn btn-primary btn-sm">View Details</a>
+            </div>
+        </div>
+
+        <!-- Order 3 -->
+        <div class="order-card">
+            <div class="order-card-header">Order #12347</div>
+            <div class="order-card-body">
+                <p><strong>Book:</strong> Funny Story</p>
+                <p><strong>Author:</strong> Emily Henry</p>
+                <p><strong>Price:</strong> $12.99</p>
+                <p><strong>Status:</strong> Pending</p>
+            </div>
+            <div class="order-footer">
+                <span>Order Date: March 10, 2025</span>
+                <a href="#" class="btn btn-primary btn-sm">View Details</a>
+            </div>
+        </div>
+
+        <!-- Order 4 -->
+        <div class="order-card">
+            <div class="order-card-header">Order #12348</div>
+            <div class="order-card-body">
+                <p><strong>Book:</strong> 1984</p>
+                <p><strong>Author:</strong> George Orwell</p>
+                <p><strong>Price:</strong> $9.99</p>
+                <p><strong>Status:</strong> Delivered</p>
+            </div>
+            <div class="order-footer">
+                <span>Order Date: March 15, 2025</span>
+                <a href="#" class="btn btn-primary btn-sm">View Details</a>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
