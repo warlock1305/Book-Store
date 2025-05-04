@@ -1,0 +1,140 @@
+@import url("theme_variables.css");
+
+.container {
+    margin-top: 30px;
+}
+
+/* Cart Layout - Align items left */
+.row {
+    display: flex;
+    justify-content: flex-start; /* Aligns items to the left */
+    flex-wrap: wrap;
+    gap: 15px; /* Adds spacing between items */
+}
+
+/* Cart Item Styling */
+.cart-item {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+}
+
+/* Card Styling */
+.cart-item .card {
+    background-color: var(--card-background-color);
+    border: 1px solid var(--card-border-color);
+    border-radius: var(--border-radius-medium);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    margin-bottom: 15px;
+    width: 100%;
+    max-width: 230px; /* Ensures uniform width */
+    min-height: 100%; /* Makes all cards equal height */
+}
+
+/* Image Adjustments */
+.cart-item .image-wrapper {
+    position: relative;
+    padding-bottom: 120%; /* Maintains aspect ratio */
+    overflow: hidden;
+}
+
+.cart-item .image-wrapper img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Title and Price Adjustments */
+.cart-item .card-title {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.cart-item .price {
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-bottom: 0.8rem;
+}
+
+/* Rating Stars */
+.cart-item .rating {
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+}
+
+.cart-item .filled {
+    color: #ffcc00;
+}
+
+.cart-item .unfilled {
+    color: #d3d3d3;
+}
+
+/* Buttons and Quantity Input */
+.cart-item .d-flex {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-item input[type="number"] {
+    width: 45px;
+    text-align: center;
+    font-size: 0.9rem;
+    padding: 3px;
+}
+
+.btn-warning {
+    background-color: #f0ad4e;
+    border: none;
+    padding: 3px 8px;
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+/* Total Price Section */
+.total-section {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* Checkout Button */
+.btn-primary {
+    background-color: var(--primary-color);
+    border: none;
+    font-size: 1.5rem;
+    padding: 10px;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover-color);
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+    .row {
+        justify-content: center; /* Center items on smaller screens */
+    }
+
+    .cart-item .card {
+        max-width: 100%;
+    }
+
+    .cart-item input[type="number"] {
+        width: 40px;
+    }
+
+    .btn-warning {
+        font-size: 0.8rem;
+        padding: 4px;
+    }
+}
+
+.card-body strong {
+    /* color: var(--primary-color); */
+    color: #28a745;
+}

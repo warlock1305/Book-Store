@@ -1,0 +1,52 @@
+@import url("theme_variables.css");
+
+.auth-form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: var(--card-background-color);
+    border: 1px solid var(--card-border-color);
+    border-radius: var(--border-radius-medium);
+    box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+.auth-form h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.auth-form .form-group {
+    margin-bottom: 20px;
+}
+
+.auth-form label {
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
+.auth-form .form-control {
+    font-size: 1rem;
+    padding: 10px;
+    border-radius: var(--border-radius-small);
+}
+
+.auth-form .btn-primary {
+    background-color: var(--primary-color);
+    border: none;
+    padding: 12px;
+    border-radius: var(--border-radius-small);
+    font-size: 1.1rem;
+}
+
+.auth-form .btn-primary:hover {
+    background-color: var(--primary-hover-color);
+}
+
+.auth-form .text-center a {
+    color: var(--primary-color);
+}
+
+.auth-form .text-center a:hover {
+    text-decoration: underline;
+}
