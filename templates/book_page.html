@@ -8,101 +8,15 @@
     <link href="../css/book.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container mt-5">
-        <!-- Book Details and Image -->
-        <div class="book-detail">
-            <div class="book-image">
-                <img src="../assets/images/just for the summer.jpeg" class="img-fluid" alt="Just for the Summer Book Cover">
-            </div>
-            <div class="book-info">
-                <h1 class="book-title">Just for the Summer</h1>
-                <p class="book-author">by <strong>Abby Jimenez</strong></p>
-                <p class="book-genre">Genre: Romance, Drama</p>
-                <p class="book-page-count"><strong>Pages:</strong> 384</p>
-                <p class="book-language"><strong>Language:</strong> English</p>
-                <p class="book-format"><strong>Format:</strong> Paperback</p>
-                <p class="book-rating">Rating:
-                    <span class="rating">
-                        <span class="filled">★</span>
-                        <span class="filled">★</span>
-                        <span class="filled">★</span>
-                        <span class="unfilled">☆</span>
-                        <span class="unfilled">☆</span>
-                    </span> (4.5/5 - 1,234 reviews)
-                </p>
-                <p class="book-price">Price: <strong>$15.99</strong></p>
-                <button class="add-to-cart">Add to Cart</button>
-            </div>
-        </div>
-
-        <!-- Description Section -->
-        <div class="description mt-5">
-            <h4>Description</h4>
-            <p>A young postman discovers he has only a short time left to live. When the devil appears and offers him a deal—remove one thing from the world to gain an extra day of life—he must confront what truly matters to him.</p>
-        </div>
-
-        <!-- Reviews Section -->
-        <div class="reviews mt-5">
-            <h3>Reader Reviews</h3>
-            <div class="review">
-                <p><strong>Sarah M.</strong>: "A touching and thought-provoking story. Highly recommend!"</p>
-            </div>
-            <div class="review">
-                <p><strong>Mike L.</strong>: "Beautifully written and deeply emotional."</p>
-            </div>
-        </div>
-
-        <!-- Related Books Section -->
-        <div class="related-books mt-5">
-            <h3>Related Books</h3>
-            <div class="row">
-                <div class="col-md-3 book-item">
-                    <div class="card">
-                        <div class="image-wrapper">
-                            <img src="../assets/images/Bride.jpeg" class="card-img-top" alt="Book Cover">
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Bride</h5>
-                            <p class="card-text">by <strong>Ali Hazelwood</strong></p>
-                            <p>Rating:
-                                <span class="rating">
-                                    <span class="filled">★</span>
-                                    <span class="filled">★</span>
-                                    <span class="filled">★</span>
-                                    <span class="filled">★</span>
-                                    <span class="unfilled">☆</span>
-                                </span> 7.88/10
-                            </p>
-                            <p class="price">Price: <strong>$14.99</strong></p>
-                            <button class="btn-add-to-cart">Add to Cart</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-md-3 book-item">
-                    <div class="card">
-                        <div class="image-wrapper">
-                            <img src="../assets/images/funny story.jpeg" class="card-img-top" alt="Book Cover">
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Funny Story</h5>
-                            <p class="card-text">by <strong>Emily Henry</strong></p>
-                            <p>Rating:
-                                <span class="rating">
-                                    <span class="filled">★</span>
-                                    <span class="filled">★</span>
-                                    <span class="filled">★</span>
-                                    <span class="unfilled">☆</span>
-                                    <span class="unfilled">☆</span>
-                                </span> 7.60/10
-                            </p>
-                            <p class="price">Price: <strong>$12.99</strong></p>
-                            <button class="btn-add-to-cart">Add to Cart</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="container mt-5" id="book-details-container">
+        <div class="text-center py-5">
+            <div class="spinner-border text-primary" role="status"></div>
+            <p>Loading book details...</p>
         </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="../js/book_page.js"></script>
 </body>
+
 </html>

@@ -262,3 +262,107 @@ body {
     color: var(--text-color);
 }
 
+.book-item {
+    transition: all 0.3s ease;
+}
+
+.book-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.image-wrapper {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #eee;
+}
+
+.card {
+    border: none;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.btn-add-to-cart {
+    transition: all 0.2s ease;
+}
+
+.btn-add-to-cart:hover {
+    transform: scale(1.02);
+}
+
+.rating-text {
+    font-weight: 500;
+}
+
+.filter-sort-bar {
+    background-color: #f8f9fa;
+}
+
+.filter-sort-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #28a74665; /* Semi-transparent green background */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.filter-sort-bar .filter,
+.filter-sort-bar .sort {
+    flex: 1 1 200px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.filter-sort-bar label {
+    font-weight: bold;
+    margin-bottom: 0;
+    color: #333;
+    white-space: nowrap;
+}
+
+.filter-sort-bar select {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    background-color: white;
+    font-size: 14px;
+    color: #495057;
+    cursor: pointer;
+}
+
+.filter-sort-bar select:focus {
+    outline: none;
+    border-color: #28a745;
+    box-shadow: 0 0 0 2px rgba(40, 167, 69, 0.25);
+}
+
+.filter-sort-bar button {
+    padding: 8px 20px;
+    background-color: #28a745; /* Solid green button */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.filter-sort-bar button:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .filter-sort-bar .filter,
+    .filter-sort-bar .sort {
+        flex: 1 1 100%;
+    }
+    
+    .filter-sort-bar button {
+        width: 100%;
+    }
+}

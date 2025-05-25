@@ -30,172 +30,41 @@
     </nav>
 
     <div class="container mt-3">
-        <div class="filter-sort-bar">
-            <div class="filter">
-                <label for="genre-filter">Filter by Genre:</label>
-                <select id="genre-filter">
-                    <option value="all">All Genres</option>
-                    <option value="nonfiction">Nonfiction</option>
-                    <option value="fiction">Fiction</option>
-                    <option value="romance">Love & Romance</option>
-                    <option value="scifi">Science Fiction</option>
-                    <option value="fantasy">Fantasy</option>
-                    <option value="mystery">Mystery</option>
-                </select>
+        <div class="filter-sort-bar mb-4 p-3 bg-light rounded">
+            <div class="row align-items-center">
+                <div class="col-md-5 mb-2 mb-md-0">
+                    <div class="filter d-flex align-items-center">
+                        <label for="genre-filter" class="mb-0 mr-2">Filter:</label>
+                        <select id="genre-filter" class="form-control">
+                            <option value="all">All Genres</option>
+                            <option value="fiction">Fiction</option>
+                            <option value="nonfiction">Nonfiction</option>
+                            <option value="romance">Romance</option>
+                            <option value="scifi">Science Fiction</option>
+                            <option value="fantasy">Fantasy</option>
+                            <option value="mystery">Mystery</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-5 mb-2 mb-md-0">
+                    <div class="sort d-flex align-items-center">
+                        <label for="sort-by" class="mb-0 mr-2">Sort by:</label>
+                        <select id="sort-by" class="form-control">
+                            <option value="popularity">Popularity</option>
+                            <option value="rating">Rating</option>
+                            <option value="newest">Newest</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <button id="apply-filters" class="btn btn-primary btn-block">Apply</button>
+                </div>
             </div>
-            <div class="sort">
-                <label for="sort-by">Sort by:</label>
-                <select id="sort-by">
-                    <option value="popularity">Popularity</option>
-                    <option value="rating">Rating</option>
-                    <option value="newest">Newest</option>
-                    <option value="price">Price</option>
-                </select>
-            </div>
-            <button id="apply-filters">Apply Filters</button>
         </div>
         <div class="row" id="book-list">
-
-            <!-- Book Items -->
-            <div class="col-md-3 book-item">
-                <a href="/Book Store/templates/book_page.html" class="card-link">
-                    <div class="card">
-                        <div class="image-wrapper">
-                            <img src="../uploads/images/just for the summer.jpeg" class="card-img-top" alt="Book Cover">
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Just for the Summer</h5>
-                            <p class="card-text">by <strong>Abby Jimenez</strong></p>
-                            <p>Rating:
-                                <span class="rating">
-                                    <span class="filled">★</span>
-                                    <span class="filled">★</span>
-                                    <span class="filled">★</span>
-                                    <span class="unfilled">☆</span>
-                                    <span class="unfilled">☆</span>
-                                </span> 5.92/10
-                            </p>
-                            <p class="price">Price: <strong>$15.99</strong></p>
-                            <button class="btn-add-to-cart">Add to Cart</button>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            
-            <div class="col-md-3 book-item">
-                <div class="card">
-                    <div class="image-wrapper">
-                        <img src="assets/images/Bride.jpeg" class="card-img-top" alt="Book Cover">
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Bride</h5>
-                        <p class="card-text">by <strong>Ali Hazelwood</strong></p>
-                        <p>Rating:
-                            <span class="rating">
-                                <span class="filled">★</span>
-                                <span class="filled">★</span>
-                                <span class="filled">★</span>
-                                <span class="filled">★</span>
-                                <span class="unfilled">☆</span>
-                            </span> 7.88/10
-                        </p>
-                        <p class="price">Price: <strong>$14.99</strong></p>
-                        <button class="btn-add-to-cart">Add to Cart</button>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-md-3 book-item">
-                <div class="card">
-                    <div class="image-wrapper">
-                        <img src="assets/images/funny story.jpeg" class="card-img-top" alt="Book Cover">
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Funny Story</h5>
-                        <p class="card-text">by <strong>Emily Henry</strong></p>
-                        <p>Rating:
-                            <span class="rating">
-                                <span class="filled">★</span>
-                                <span class="filled">★</span>
-                                <span class="filled">★</span>
-                                <span class="unfilled">☆</span>
-                                <span class="unfilled">☆</span>
-                            </span> 7.60/10
-                        </p>
-                        <p class="price">Price: <strong>$12.99</strong></p>
-                        <button class="btn-add-to-cart">Add to Cart</button>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-md-3 book-item">
-                <div class="card">
-                    <div class="image-wrapper">
-                        <img src="assets/images/1984.jpeg" class="card-img-top" alt="Book Cover">
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">1984</h5>
-                        <p class="card-text">by <strong>George Orwell</strong></p>
-                        <p>Rating:
-                            <span class="rating">
-                                <span class="filled">★</span>
-                                <span class="filled">★</span>
-                                <span class="filled">★</span>
-                                <span class="filled">★</span>
-                                <span class="filled">★</span>
-                            </span> 8.74/10
-                        </p>
-                        <p class="price">Price: <strong>$9.99</strong></p>
-                        <button class="btn-add-to-cart">Add to Cart</button>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-md-3 book-item">
-                <div class="card">
-                    <div class="image-wrapper">
-                        <img src="assets/images/house of flame and shadow.jpg" class="card-img-top" alt="Book Cover">
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">House of Flame And Shadow</h5>
-                        <p class="card-text">by <strong>Sarah J. Maas</strong></p>
-                        <p>Rating:
-                            <span class="rating">
-                                <span class="filled">★</span>
-                                <span class="filled">★</span>
-                                <span class="filled">★</span>
-                                <span class="unfilled">☆</span>
-                                <span class="unfilled">☆</span>
-                            </span> 8.17/10
-                        </p>
-                        <p class="price">Price: <strong>$22.99</strong></p>
-                        <button class="btn-add-to-cart">Add to Cart</button>
-                    </div>  
-                </div>
-            </div>
-            
-            <div class="col-md-3 book-item">
-                <div class="card">
-                    <div class="image-wrapper">
-                        <img src="assets/images/house of sky and breath.jpg" class="card-img-top" alt="Book Cover">
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">House of Sky And Breath</h5>
-                        <p class="card-text">by <strong>Sarah J. Maas</strong></p>
-                        <p>Rating:
-                            <span class="rating">
-                                <span class="filled">★</span>
-                                <span class="filled">★</span>
-                                <span class="filled">★</span>
-                                <span class="unfilled">☆</span>
-                                <span class="unfilled">☆</span>
-                            </span> 8.00/10
-                        </p>
-                        <p class="price">Price: <strong>$19.99</strong></p>
-                        <button class="btn-add-to-cart">Add to Cart</button>
-                    </div>
-                </div>
-            </div>
+            <!-- Book Items will be dynamically inserted here -->
         </div>
     </div>
 
@@ -235,16 +104,20 @@
             </div>
     
             <!-- Copyright -->
-            <div class="text-center mt-3">
+            <div class="text-center mt-3">b````
                 <p class="mb-0">&copy; 2025 Read Any Book. All rights reserved.</p>
             </div>
         </div>
     </footer>
-    
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="js/home.js"></script>
+    
+    
 
 </body>
 
