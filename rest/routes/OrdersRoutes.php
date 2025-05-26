@@ -1,51 +1,55 @@
 <?php
 
 require_once __DIR__ . '/../../vendor/autoload.php';
-require_once __DIR__ . '/../services/OrdersService.php';
+require_once __DIR__ . '/../data/Roles.php';
 
-// Get all orders
-Flight::route('GET /api/orders', function() {
-    $ordersService = new OrdersService();
-    echo json_encode($ordersService->get_all_orders());
-});
+Flight::group('/api/orders', function () {
 
-// Get an order by ID
-Flight::route('GET /api/orders/@id', function($id) {
-    $ordersService = new OrdersService();
-    echo json_encode($ordersService->get_order_by_id($id));
-});
+    // Get all orders - allow USER and ADMIN
+    Flight::route('GET /', function () {
+        Flight::auth_middleware()->authorizeRoles([Roles::USER, Roles::ADMIN]);
+        echo json_encode(Flight::orders_service()->get_all_orders());
+    });
 
-// Add a new order
-Flight::route('POST /api/orders', function() {
-    $data = Flight::request()->data->getData();
-    $ordersService = new OrdersService();
-    try {
-        $ordersService->add_order($data);
-        echo json_encode(['message' => 'Order placed successfully']);
-    } catch (Exception $e) {
-        echo json_encode(['error' => $e->getMessage()]);
-    }
-});
+    // Get an order by ID - allow USER and ADMIN
+    Flight::route('GET /@id', function ($id) {
+        Flight::auth_middleware()->authorizeRoles([Roles::USER, Roles::ADMIN]);
+        echo json_encode(Flight::orders_service()->get_order_by_id($id));
+    });
 
-// Update an existing order
-Flight::route('PUT /api/orders', function() {
-    $data = Flight::request()->data->getData();
-    $ordersService = new OrdersService();
-    try {
-        $ordersService->update_order($data);
-        echo json_encode(['message' => 'Order updated successfully']);
-    } catch (Exception $e) {
-        echo json_encode(['error' => $e->getMessage()]);
-    }
-});
+    // Add a new order - only ADMIN
+    Flight::route('POST /', function () {
+        Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
+        $data = Flight::request()->data->getData();
+        try {
+            Flight::orders_service()->add_order($data);
+            echo json_encode(['message' => 'Order placed successfully']);
+        } catch (Exception $e) {
+            echo json_encode(['error' => $e->getMessage()]);
+        }
+    });
 
-// Delete an order
-Flight::route('DELETE /api/orders/@id', function($id) {
-    $ordersService = new OrdersService();
-    try {
-        $ordersService->delete_order($id);
-        echo json_encode(['message' => 'Order cancelled successfully']);
-    } catch (Exception $e) {
-        echo json_encode(['error' => $e->getMessage()]);
-    }
+    // Update an existing order - only ADMIN
+    Flight::route('PUT /', function () {
+        Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
+        $data = Flight::request()->data->getData();
+        try {
+            Flight::orders_service()->update_order($data);
+            echo json_encode(['message' => 'Order updated successfully']);
+        } catch (Exception $e) {
+            echo json_encode(['error' => $e->getMessage()]);
+        }
+    });
+
+    // Delete an order - only ADMIN
+    Flight::route('DELETE /@id', function ($id) {
+        Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
+        try {
+            Flight::orders_service()->delete_order($id);
+            echo json_encode(['message' => 'Order cancelled successfully']);
+        } catch (Exception $e) {
+            echo json_encode(['error' => $e->getMessage()]);
+        }
+    });
+
 });

@@ -47,12 +47,14 @@ class BooksDao extends BaseDao {
             $this->execute($query, $params);
 
             return [
+                "success" => true,
                 "message" => "Book inserted successfully",
                 "bookID" => $book['bookID']
             ];
         } catch (PDOException $e) {
             return [
-                "error" => "Failed to insert book",
+                "success" => false,
+                "message" => "Failed to insert book",
                 "details" => $e->getMessage()
             ];
         }

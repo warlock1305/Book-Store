@@ -1,4 +1,66 @@
 $(document).ready(function () {
+
+    $.ajaxSetup({
+        beforeSend: function (xhr) {
+            const token = localStorage.getItem('token');
+            if (token) {
+                console.log('Setting Authentication header with token:', token);
+                xhr.setRequestHeader('Authentication', token);
+            }
+        }
+    });
+
+    const navbar = $('#navbar-container');
+    const token = localStorage.getItem('token');
+
+    let role = null;
+
+    if (token) {
+        try {
+            const decoded = jwt_decode(token);
+            role = decoded.user.role || null;
+            console.log('Decoded token:', decoded);
+            console.log('User role:', role);
+        } catch (err) {
+            console.error('Error decoding token:', err);
+        }
+    }
+
+    
+    if (token) {
+      navbar.html(`
+        <li class="nav-item mx-2"><a class="nav-link" href="account.html">Account</a></li>
+        <li class="nav-item mx-2"><a class="nav-link" href="my_orders.html">My Orders</a></li>
+        <li class="nav-item mx-2"><a class="nav-link" href="cart.html">Cart</a></li>
+        <li class="nav-item mx-2"><a class="nav-link" href="#" id="logoutBtn">Logout</a></li>
+      `);
+        
+      // Add logout click handler
+      $('#logoutBtn').on('click', function(e) {
+        e.preventDefault();
+        localStorage.removeItem('token');
+        // Optional: redirect to login or homepage
+        window.location.href = 'login.html';
+      });
+    
+    } else {
+      navbar.html(`
+        <li class="nav-item mx-2"><a class="nav-link" href="register.html">Sign Up</a></li>
+        <li class="nav-item mx-2"><a class="nav-link" href="login.html">Log In</a></li>
+        <li class="nav-item mx-2"><a class="nav-link" href="cart.html">Cart</a></li>
+      `);
+    }
+
+    // if(role == 'admin'){
+    //     navbar.html(`
+    //     <li class="nav-item mx-2"><a class="nav-link" href="admin.html">Admin</a></li>
+    //     <li class="nav-item mx-2"><a class="nav-link" href="account.html">Account</a></li>
+    //     <li class="nav-item mx-2"><a class="nav-link" href="my_orders.html">My Orders</a></li>
+    //     <li class="nav-item mx-2"><a class="nav-link" href="cart.html">Cart</a></li>
+    //     <li class="nav-item mx-2"><a class="nav-link" href="#" id="logoutBtn">Logout</a></li>
+    //   `);
+    // }
+
     let currentGenre = 'all';
     let currentSort = 'popularity';
     let isLoading = false;

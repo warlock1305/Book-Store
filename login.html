@@ -6,16 +6,25 @@
     <title>Login - Just for the Summer Bookstore</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/auth.css" rel="stylesheet">
+    <style>
+        .auth-form {
+            max-width: 500px;
+            margin: auto;
+            padding: 30px;
+            border-radius: 10px;
+            background-color: #f8f9fa;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+    </style>
 </head>
 <body>
     <div class="container mt-5">
-        <!-- Login Form Section -->
         <div class="auth-form">
             <h2 class="text-center mb-4">Login</h2>
             <form action="/login" method="POST">
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                    <label for="email_or_username">Email or Username</label>
+                    <input type="text" class="form-control" id="email_or_username" placeholder="Enter your email or username" required>
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
@@ -28,5 +37,7 @@
             </form>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/login.js"></script>
 </body>
 </html>

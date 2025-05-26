@@ -25,17 +25,15 @@ class UsersDao extends BaseDao {
 
     public function insert_user($user) {
         try {
-            $query = "INSERT INTO users (userID, username, email, password, firstName, lastName, dateJoined, address)
-                      VALUES (:userID, :username, :email, :password, :firstName, :lastName, :dateJoined, :address)";
+            $query = "INSERT INTO users (userID, username, email, password_hash, firstName, lastName)
+                      VALUES (:userID, :username, :email, :password_hash, :firstName, :lastName)";
             $params = [
                 ':userID' => $user['userID'],
                 ':username' => $user['username'],
                 ':email' => $user['email'],
-                ':password' => password_hash($user['password'], PASSWORD_DEFAULT), // securely hash the password
+                ':password_hash' => password_hash($user['password'], PASSWORD_DEFAULT), // securely hash the password
                 ':firstName' => $user['firstName'],
                 ':lastName' => $user['lastName'],
-                ':dateJoined' => $user['dateJoined'],
-                ':address' => $user['address']
             ];
             $this->execute($query, $params);
 
