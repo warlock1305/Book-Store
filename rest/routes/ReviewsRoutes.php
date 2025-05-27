@@ -1,51 +1,55 @@
 <?php
 
 require_once __DIR__ . '/../../vendor/autoload.php';
-require_once __DIR__ . '/../services/ReviewsService.php';
+require_once __DIR__ . '/../data/Roles.php';
 
-// Get all reviews
-Flight::route('GET /api/reviews', function() {
-    $reviewsService = new ReviewsService();
-    echo json_encode($reviewsService->get_all_reviews());
-});
+Flight::group('/api/reviews', function () {
 
-// Get a review by ID
-Flight::route('GET /api/reviews/@id', function($id) {
-    $reviewsService = new ReviewsService();
-    echo json_encode($reviewsService->get_review_by_id($id));
-});
+    // Get all reviews - allow USER and ADMIN
+    Flight::route('GET /', function () {
+        Flight::auth_middleware()->authorizeRoles([Roles::USER, Roles::ADMIN]);
+        echo json_encode(Flight::reviews_service()->get_all_reviews());
+    });
 
-// Add a new review
-Flight::route('POST /api/reviews', function() {
-    $data = Flight::request()->data->getData();
-    $reviewsService = new ReviewsService();
-    try {
-        $reviewsService->add_review($data);
-        echo json_encode(['message' => 'Review added successfully']);
-    } catch (Exception $e) {
-        echo json_encode(['error' => $e->getMessage()]);
-    }
-});
+    // Get a review by ID - allow USER and ADMIN
+    Flight::route('GET /@id', function ($id) {
+        Flight::auth_middleware()->authorizeRoles([Roles::USER, Roles::ADMIN]);
+        echo json_encode(Flight::reviews_service()->get_review_by_id($id));
+    });
 
-// Update an existing review
-Flight::route('PUT /api/reviews', function() {
-    $data = Flight::request()->data->getData();
-    $reviewsService = new ReviewsService();
-    try {
-        $reviewsService->update_review($data);
-        echo json_encode(['message' => 'Review updated successfully']);
-    } catch (Exception $e) {
-        echo json_encode(['error' => $e->getMessage()]);
-    }
-});
+    // Add a new review - only ADMIN
+    Flight::route('POST /', function () {
+        Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
+        $data = Flight::request()->data->getData();
+        try {
+            Flight::reviews_service()->add_review($data);
+            echo json_encode(['message' => 'Review added successfully']);
+        } catch (Exception $e) {
+            echo json_encode(['error' => $e->getMessage()]);
+        }
+    });
 
-// Delete a review
-Flight::route('DELETE /api/reviews/@id', function($id) {
-    $reviewsService = new ReviewsService();
-    try {
-        $reviewsService->delete_review($id);
-        echo json_encode(['message' => 'Review deleted successfully']);
-    } catch (Exception $e) {
-        echo json_encode(['error' => $e->getMessage()]);
-    }
+    // Update an existing review - only ADMIN
+    Flight::route('PUT /', function () {
+        Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
+        $data = Flight::request()->data->getData();
+        try {
+            Flight::reviews_service()->update_review($data);
+            echo json_encode(['message' => 'Review updated successfully']);
+        } catch (Exception $e) {
+            echo json_encode(['error' => $e->getMessage()]);
+        }
+    });
+
+    // Delete a review - only ADMIN
+    Flight::route('DELETE /@id', function ($id) {
+        Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
+        try {
+            Flight::reviews_service()->delete_review($id);
+            echo json_encode(['message' => 'Review deleted successfully']);
+        } catch (Exception $e) {
+            echo json_encode(['error' => $e->getMessage()]);
+        }
+    });
+
 });

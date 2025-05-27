@@ -1,4 +1,66 @@
 $(document).ready(function () {
+
+    $.ajaxSetup({
+        beforeSend: function (xhr) {
+            const token = localStorage.getItem('token');
+            if (token) {
+                console.log('Setting Authentication header with token:', token);
+                xhr.setRequestHeader('Authentication', token);
+            }
+        }
+    });
+
+    const navbar = $('#navbar-container');
+    const token = localStorage.getItem('token');
+
+    let role = null;
+
+    if (token) {
+        try {
+            const decoded = jwt_decode(token);
+            role = decoded.user.role || null;
+            console.log('Decoded token:', decoded);
+            console.log('User role:', role);
+        } catch (err) {
+            console.error('Error decoding token:', err);
+        }
+    }
+
+    
+    if (token) {
+      navbar.html(`
+        <li class="nav-item mx-2"><a class="nav-link" href="account.html">Account</a></li>
+        <li class="nav-item mx-2"><a class="nav-link" href="my_orders.html">My Orders</a></li>
+        <li class="nav-item mx-2"><a class="nav-link" href="cart.html">Cart</a></li>
+        <li class="nav-item mx-2"><a class="nav-link" href="#" id="logoutBtn">Logout</a></li>
+      `);
+        
+      // Add logout click handler
+      $('#logoutBtn').on('click', function(e) {
+        e.preventDefault();
+        localStorage.removeItem('token');
+        // Optional: redirect to login or homepage
+        window.location.href = 'login.html';
+      });
+    
+    } else {
+      navbar.html(`
+        <li class="nav-item mx-2"><a class="nav-link" href="register.html">Sign Up</a></li>
+        <li class="nav-item mx-2"><a class="nav-link" href="login.html">Log In</a></li>
+        <li class="nav-item mx-2"><a class="nav-link" href="cart.html">Cart</a></li>
+      `);
+    }
+
+    // if(role == 'admin'){
+    //     navbar.html(`
+    //     <li class="nav-item mx-2"><a class="nav-link" href="admin.html">Admin</a></li>
+    //     <li class="nav-item mx-2"><a class="nav-link" href="account.html">Account</a></li>
+    //     <li class="nav-item mx-2"><a class="nav-link" href="my_orders.html">My Orders</a></li>
+    //     <li class="nav-item mx-2"><a class="nav-link" href="cart.html">Cart</a></li>
+    //     <li class="nav-item mx-2"><a class="nav-link" href="#" id="logoutBtn">Logout</a></li>
+    //   `);
+    // }
+
     let currentGenre = 'all';
     let currentSort = 'popularity';
     let isLoading = false;
@@ -73,7 +135,7 @@ $(document).ready(function () {
 
     function renderBooks(books) {
         $bookList.empty();
-        
+
         if (books.length === 0) {
             $bookList.html(`
                 <div class="col-12 text-center py-5">
@@ -85,12 +147,12 @@ $(document).ready(function () {
         }
 
         books.forEach(book => {
-            const bookSlug = slugify(book.title);
             const ratingDisplay = book.rating ? `${book.rating.toFixed(1)} ★` : 'Not rated yet';
-            
+            console.log('Rendering book:', book);
+
             const bookItem = $(`
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 book-item">
-                    <div class="card h-100">
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 book-item" data-book-id="${book.bookID}">
+                    <div class="card h-100 clickable-card">
                         <div class="image-wrapper" style="height: 200px; overflow: hidden;">
                             <img src="${book.image || '/assets/images/book-placeholder.jpg'}" 
                                  class="card-img-top h-100 object-fit-cover" 
@@ -98,16 +160,13 @@ $(document).ready(function () {
                                  onerror="this.src='/assets/images/book-placeholder.jpg'">
                         </div>
                         <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">
-                                <a href="book_page.html?id=${book.id}">${book.title}</a>
-                            </h5>
-
+                            <h5 class="card-title">${book.title}</h5>
                             <p class="card-text text-muted">by ${book.author || 'Unknown Author'}</p>
                             <p class="rating-text text-warning mb-2">${ratingDisplay}</p>
                             <div class="mt-auto">
                                 <p class="price h5">$${(book.price || 0).toFixed(2)}</p>
                                 <button class="btn btn-primary btn-block btn-add-to-cart" 
-                                        data-book-id="${book.id}">
+                                        data-book-id="${book.bookID}">
                                     Add to Cart
                                 </button>
                             </div>
@@ -119,6 +178,7 @@ $(document).ready(function () {
             $bookList.append(bookItem);
         });
     }
+
 
     function showLoading() {
         $bookList.html(`
@@ -164,22 +224,6 @@ $(document).ready(function () {
         fetchBooks();
     };
 
-    $(document).on('click', '.btn-add-to-cart', function() {
-        const bookId = $(this).data('book-id');
-        const bookCard = $(this).closest('.book-item');
-        const book = {
-            id: bookId,
-            title: bookCard.find('.card-title').text(),
-            author: bookCard.find('.card-text strong').text(),
-            price: parseFloat(bookCard.find('.price strong').text().replace('$', '')),
-            image: bookCard.find('.card-img-top').attr('src'),
-            rating: parseFloat(bookCard.find('.rating-text em').text().match(/\d+\.?\d*/)?.[0] || 0)
-        };
-
-        addToCart(book);
-        showCartNotification(book.title);
-    });
-
     function addToCart(book) {
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
         
@@ -207,4 +251,29 @@ $(document).ready(function () {
             $(this).remove();
         });
     }
+
+    // Navigate to book page when card is clicked
+    $(document).on('click', '.book-item', function(e) {
+        if ($(e.target).closest('.btn-add-to-cart').length) return;
+
+        const bookId = $(this).data('book-id');
+        console.log('Navigating to book page for ID:', bookId);
+        window.location.href = `templates/book_page.html?id=${bookId}`;
+    });
+
+
+    // Add to cart
+    $(document).on('click', '.btn-add-to-cart', function(e) {
+        e.stopPropagation(); // prevent triggering the card click
+
+        const book = $(this).closest('.book-item').data('book');
+        if (!book) {
+            console.warn('Book data not found.');
+            return;
+        }
+
+        addToCart(book);
+        showCartNotification(book.title);
+    });
+
 });

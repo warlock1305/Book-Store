@@ -24,11 +24,16 @@ $(document).ready(function () {
 
     function renderBookDetails(book) {
         const ratingStars = getRatingStars(book.rating || 0);
+        const imagePath = book.image 
+        ? '../' + book.image 
+        : '../assets/images/book-placeholder.jpg';
+
+        console.log(imagePath);
 
         const html = `
             <div class="book-detail d-flex flex-wrap">
                 <div class="book-image col-md-4">
-                    <img src="${book.image || '../assets/images/book-placeholder.jpg'}" class="img-fluid" alt="${book.title}">
+                    <img src="${imagePath}" class="img-fluid" alt="${book.title}">
                 </div>
                 <div class="book-info col-md-8">
                     <h1 class="book-title">${book.title}</h1>
@@ -59,4 +64,6 @@ $(document).ready(function () {
         for (let i = 0; i < unfilled; i++) stars += '<span class="unfilled">☆</span>';
         return `<span class="rating">${stars}</span>`;
     }
+
+    console.log('Book details page loaded for book ID:', bookId);
 });

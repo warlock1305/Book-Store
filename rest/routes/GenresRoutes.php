@@ -1,51 +1,55 @@
 <?php
 
 require_once __DIR__ . '/../../vendor/autoload.php';
-require_once __DIR__ . '/../services/GenresService.php';
+require_once __DIR__ . '/../data/Roles.php';
 
-// Get all genres
-Flight::route('GET /api/genres', function() {
-    $genresService = new GenresService();
-    echo json_encode($genresService->get_all_genres());
-});
+Flight::group('/api/genres', function () {
 
-// Get a genre by ID
-Flight::route('GET /api/genres/@id', function($id) {
-    $genresService = new GenresService();
-    echo json_encode($genresService->get_genre_by_id($id));
-});
+    // Get all genres - allow USER and ADMIN
+    Flight::route('GET /', function () {
+        Flight::auth_middleware()->authorizeRoles([Roles::USER, Roles::ADMIN]);
+        echo json_encode(Flight::genres_service()->get_all_genres());
+    });
 
-// Add a new genre
-Flight::route('POST /api/genres', function() {
-    $data = Flight::request()->data->getData();
-    $genresService = new GenresService();
-    try {
-        $genresService->add_genre($data);
-        echo json_encode(['message' => 'Genre added successfully']);
-    } catch (Exception $e) {
-        echo json_encode(['error' => $e->getMessage()]);
-    }
-});
+    // Get a genre by ID - allow USER and ADMIN
+    Flight::route('GET /@id', function ($id) {
+        Flight::auth_middleware()->authorizeRoles([Roles::USER, Roles::ADMIN]);
+        echo json_encode(Flight::genres_service()->get_genre_by_id($id));
+    });
 
-// Update an existing genre
-Flight::route('PUT /api/genres', function() {
-    $data = Flight::request()->data->getData();
-    $genresService = new GenresService();
-    try {
-        $genresService->update_genre($data);
-        echo json_encode(['message' => 'Genre updated successfully']);
-    } catch (Exception $e) {
-        echo json_encode(['error' => $e->getMessage()]);
-    }
-});
+    // Add a new genre - only ADMIN
+    Flight::route('POST /', function () {
+        Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
+        $data = Flight::request()->data->getData();
+        try {
+            Flight::genres_service()->add_genre($data);
+            echo json_encode(['message' => 'Genre added successfully']);
+        } catch (Exception $e) {
+            echo json_encode(['error' => $e->getMessage()]);
+        }
+    });
 
-// Delete a genre
-Flight::route('DELETE /api/genres/@id', function($id) {
-    $genresService = new GenresService();
-    try {
-        $genresService->delete_genre($id);
-        echo json_encode(['message' => 'Genre deleted successfully']);
-    } catch (Exception $e) {
-        echo json_encode(['error' => $e->getMessage()]);
-    }
+    // Update an existing genre - only ADMIN
+    Flight::route('PUT /', function () {
+        Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
+        $data = Flight::request()->data->getData();
+        try {
+            Flight::genres_service()->update_genre($data);
+            echo json_encode(['message' => 'Genre updated successfully']);
+        } catch (Exception $e) {
+            echo json_encode(['error' => $e->getMessage()]);
+        }
+    });
+
+    // Delete a genre - only ADMIN
+    Flight::route('DELETE /@id', function ($id) {
+        Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
+        try {
+            Flight::genres_service()->delete_genre($id);
+            echo json_encode(['message' => 'Genre deleted successfully']);
+        } catch (Exception $e) {
+            echo json_encode(['error' => $e->getMessage()]);
+        }
+    });
+
 });
